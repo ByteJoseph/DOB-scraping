@@ -61,6 +61,7 @@ for year in years:
             else:
                 output_message = f"Date: {date_str}/{month_str}/{year_str} - Correct DOB found or unexpected response!"
                 found = True
+                output_container.text(output_message)
                 break
             
         except requests.exceptions.RequestException as e:
