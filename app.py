@@ -12,7 +12,7 @@ st.header("Starting date of birth brute force...")
 regno = st.text_input("Enter register no : ")
 
 # Define the years in the desired priority order
-years = st.multiselect("Select years to brute force", [2006, 2005, 2007])
+years = st.multiselect("Select years to brute force", [2006, 2005, 2007],[2006, 2005, 2007])
 
 # Create a container for the output
 output_container = st.empty()
