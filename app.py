@@ -59,18 +59,18 @@ if regno:
                 
                 # Check for specific indicators in the response text
                 if 'try' in response.text:
-                    output_message = f"Finding Date: {date_str}/{month_str}/{year_str} - Incorrect DOB, continuing..."
+                    output_message = f"<span style='color:red; background-color:black; padding: 5px'>{date_str}/{month_str}/{year_str}</span> - Incorrect DOB, continuing..."
                 else:
-                    output_message = f"Date: {date_str}/{month_str}/{year_str} - Correct DOB found or unexpected response!"
+                    output_message = f"<span style='color:green; background-color:black; padding: 5px'>{date_str}/{month_str}/{year_str}</span> - Correct DOB found!"
                     found = True
-                    output_container.text(output_message)
+                    output_container.markdown(output_message, unsafe_allow_html=True)
                     break
                 
             except requests.exceptions.RequestException as e:
                 output_message = f"Date: c - Request failed with exception: {e}"
             
             # Update the output container
-            output_container.text(output_message)
+            output_container.markdown(output_message, unsafe_allow_html=True)
 
             # Move to the next day
             current_date += timedelta(days=1)
