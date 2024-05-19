@@ -4,9 +4,9 @@ from datetime import datetime, timedelta
 import time
 
 # Hacker-style intro message with minimal delay
-st.header("Initializing brute force attack...")
-st.header("Connecting to target server: keralaresults.nic.in")
-st.header("Starting date of birth brute force...")
+st.header("Initializing")
+st.header("Target server: keralaresults.nic.in")
+st.header("Running Program")
 
 # Replace this with the actual registration number you want to use
 regno = st.text_input("Enter register no : ")
