@@ -71,7 +71,7 @@ else:
                 if 'try' in response.text:
                     output_message = f"Date: {date_str}/{month_str}/{year_str} - Incorrect DOB, continuing..."
                 else:
-                    output_message = f"Date: {date_str}/{month_str}/{year_str} - Correct DOB found or unexpected response!"
+                    output_message = f"Date: {date_str}/{month_str}/{year_str} - Correct DOB found!"
                     found = True
                     output_container.text(output_message)
                     break
@@ -84,7 +84,7 @@ else:
             
             # Update progress
             current_iteration += 1
-            progress = current_iteration / total_iterations
+            progress = min(1, current_iteration / total_iterations)  # Ensure progress doesn't exceed 100%
             progress_bar.progress(progress)
 
             # Move to the next day
