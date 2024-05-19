@@ -6,7 +6,7 @@ import time
 # Hacker-style intro message with minimal delay
 st.header("Initialized Python3.x")
 st.header("Target server: keralaresults.nic.in")
-st.header("Running Program")
+st.header("DOB Cracking Program")
 
 # Replace this with the actual registration number you want to use
 regno = st.text_input("Enter register no : ")
