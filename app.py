@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import time
 
 # Hacker-style intro message with minimal delay
-st.header("Initializing")
+st.header("Initialized Python 3x")
 st.header("Target server: keralaresults.nic.in")
 st.header("Running Program")
 
