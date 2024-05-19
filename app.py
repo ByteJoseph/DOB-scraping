@@ -12,7 +12,7 @@ st.header("Starting date of birth brute force...")
 regno = st.text_input("Enter register no : ")
 
 # Define the years in the desired priority order
-years = st.multiselect("Select years to brute force", [2006, 2005, 2007],[2006, 2005, 2007])
+years = st.multiselect("Select years to brute force", [2006, 2005, 2007], [2006, 2005, 2007])
 
 # Create a container for the output
 output_container = st.empty()
@@ -26,7 +26,17 @@ headers = {
 }
 
 # Check if registration number is provided
-if regno:
+if not regno:
+    st.error("Please enter a registration number to proceed.")
+else:
+    # Initialize progress bar
+    progress_bar = st.progress(0)
+    
+    # Define total number of iterations
+    total_iterations = sum([(end_date - start_date).days for year in years
+                            for start_date, end_date in [(datetime(year, 1, 1), datetime(year, 12, 31))]])
+    current_iteration = 0
+    
     # Loop through each year in the specified order
     for year in years:
         if found:
@@ -71,12 +81,17 @@ if regno:
             
             # Update the output container
             output_container.text(output_message)
+            
+            # Update progress
+            current_iteration += 1
+            progress = current_iteration / total_iterations
+            progress_bar.progress(progress)
 
             # Move to the next day
             current_date += timedelta(days=1)
 
-# Display final output message
-if found and regno:
-    st.success("Brute force attack successful!")
-elif regno:
-    st.error("Brute force attack unsuccessful.")
+    # Display final output message
+    if found:
+        st.success("Brute force attack successful!")
+    else:
+        st.error("Brute force attack unsuccessful.")
