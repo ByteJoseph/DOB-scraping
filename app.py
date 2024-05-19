@@ -74,7 +74,7 @@ for year in years:
         current_date += timedelta(days=1)
 
 # Display final output message
-if found:
+if found and regno:
     st.success("Brute force attack successful!")
-else:
+elif regno:
     st.error("Brute force attack unsuccessful.")
