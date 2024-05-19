@@ -59,7 +59,7 @@ if regno:
                 
                 # Check for specific indicators in the response text
                 if 'try' in response.text:
-                    output_message = f"Date: {date_str}/{month_str}/{year_str} - Incorrect DOB, continuing..."
+                    output_message = f"Finding Date: {date_str}/{month_str}/{year_str} - Incorrect DOB, continuing..."
                 else:
                     output_message = f"Date: {date_str}/{month_str}/{year_str} - Correct DOB found or unexpected response!"
                     found = True
@@ -67,7 +67,7 @@ if regno:
                     break
                 
             except requests.exceptions.RequestException as e:
-                output_message = f"Date: {date_str}/{month_str}/{year_str} - Request failed with exception: {e}"
+                output_message = f"Date: c - Request failed with exception: {e}"
             
             # Update the output container
             output_container.text(output_message)
@@ -77,6 +77,6 @@ if regno:
 
 # Display final output message
 if found and regno:
-    st.success("Brute force attack successful!")
+    st.success(f"DOB Found {date_str}/{month_str}/{year_str}")
 elif regno:
     st.error("Brute force attack unsuccessful.")
