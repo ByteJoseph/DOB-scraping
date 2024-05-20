@@ -3,6 +3,7 @@ import requests
 from datetime import datetime, timedelta
 import time
 import webbrowser
+import json
 
 # Hacker-style intro message with minimal delay
 st.header("Initialized Python3.x")
@@ -87,6 +88,13 @@ if regno:
             # HTML code to create a clickable link that opens in a new tab
             link = f'[View Mark sheet](https://results.kite.kerala.gov.in/hse/result_schemeI.html?regno={regno}&date1={date_str}%2F{month_str}%2F{year_str}&Submit=Submit)'
             st.markdown(link, unsafe_allow_html=True)
+            urlx = "https://api.ksmart.lsgkerala.gov.in/birth-services/cr/birth-search/advanced?page=0&size=10&sort=childDetails.dateOfBirth"
+            response_text=response.text
+            mname = response_text.get("mname", "Key not found")
+
+            print(mname)
+            firstname=mname.split()
+            firstname=firstname[0]
             
     else:
             status.update(label="Brute force attack unsuccessful.", state="complete", expanded=False)
