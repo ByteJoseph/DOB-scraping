@@ -29,7 +29,7 @@ headers = {
 if regno:
     # Display a status message and keep it until the DOB is found
     with st.status("Fetching dates...", expanded=True) as status:
-        st.write("Searching for data...")
+        st.write("Searching for birth dates...")
 
         # Loop through each year in the specified order
         for year in years:
