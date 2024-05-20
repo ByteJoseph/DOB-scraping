@@ -28,6 +28,14 @@ headers = {
 # Check if registration number is provided
 if regno:
     # Loop through each year in the specified order
+    with st.status("Fetching dates...", expanded=True) as status:
+              st.write("Searching for data...")
+              time.sleep(2)
+              st.write("Found URL.")
+              time.sleep(1)
+              st.write("Downloading data...")
+              time.sleep(1)
+              
     for year in years:
         if found:
             break
@@ -71,14 +79,7 @@ if regno:
             
             # Update the output container
             output_container.markdown(output_message, unsafe_allow_html=True)
-            with st.status("Fetching dates...", expanded=True) as status:
-              st.write("Searching for data...")
-              time.sleep(2)
-              st.write("Found URL.")
-              time.sleep(1)
-              st.write("Downloading data...")
-              time.sleep(1)
-              
+            
 
             # Move to the next day
             current_date += timedelta(days=1)
