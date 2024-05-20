@@ -65,7 +65,7 @@ if regno:
                     if 'try' in response.text:
                         output_message = f"<span style='color:red; background-color:black; padding: 5px'>{date_str}/{month_str}/{year_str}</span> - Incorrect DOB, continuing..."
                     else:
-                        output_message = f"<span style='color:green; background-color:black; padding: 5px'>{date_str}/{month_str}/{year_str}</span> - Correct DOB found!"
+                        output_message = f"<span style='color:green;  padding: 5px'>{date_str}/{month_str}/{year_str}</span> - Correct DOB found!"
                         found = True
                         output_container.markdown(output_message, unsafe_allow_html=True)
                         break
@@ -74,7 +74,7 @@ if regno:
                     output_message = f"Date: {date_str}/{month_str}/{year_str} - Request failed with exception: {e}"
 
                 # Update the output container
-                output_container.markdown(output_message, unsafe_allow_html=True)
+                #output_container.markdown(output_message, unsafe_allow_html=True)
 
                 # Move to the next day
                 current_date += timedelta(days=1)
