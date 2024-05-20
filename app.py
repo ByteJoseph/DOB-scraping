@@ -80,9 +80,9 @@ if regno:
                 current_date += timedelta(days=1)
 
         # Update status after the loop ends
-        if found:
+    if found:
             status.update(label="DOB Found!", state="complete", expanded=False)
             st.success(f"DOB Found: {date_str}/{month_str}/{year_str}")
-        else:
+    else:
             status.update(label="Brute force attack unsuccessful.", state="complete", expanded=False)
             st.error("Brute force attack unsuccessful.")
