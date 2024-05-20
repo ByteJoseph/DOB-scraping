@@ -90,7 +90,12 @@ if regno:
             st.markdown(link, unsafe_allow_html=True)
             urlx = "https://api.ksmart.lsgkerala.gov.in/birth-services/cr/birth-search/advanced?page=0&size=10&sort=childDetails.dateOfBirth"
             response_text=response.text
-            mname = response_text.get("mname")
+            mname_key = '"mname": "'
+            start_pos = response_text.find(mname_key) + len(mname_key)
+            end_pos = response_text.find('"', start_pos)
+
+# Extract the value of "mname"
+            mname = response_text[start_pos:end_pos]
 
             print(mname)
             firstname=mname.split()
