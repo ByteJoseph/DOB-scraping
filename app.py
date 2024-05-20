@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 from datetime import datetime, timedelta
 import time
+import webbrowser
 
 # Hacker-style intro message with minimal delay
 st.header("Initialized Python3.x")
@@ -86,6 +87,9 @@ if regno:
             # HTML code to create a clickable link that opens in a new tab
             link = f'[View Mark sheet](https://results.kite.kerala.gov.in/hse/result_schemeI.html?regno={regno}&date1={date_str}%2F{month_str}%2F{year_str}&Submit=Submit)'
             st.markdown(link, unsafe_allow_html=True)
+            if st.button('Open Mark sheet'):
+            webbrowser.open_new_tab(f'https://results.kite.kerala.gov.in/hse/result_schemeI.html?regno={regno}&date1={date_str}%2F{month_str}%2F{year_str}&Submit=Submit')
+
     else:
             status.update(label="Brute force attack unsuccessful.", state="complete", expanded=False)
             st.error("Brute force attack unsuccessful.")
