@@ -90,7 +90,7 @@ if regno:
             st.markdown(link, unsafe_allow_html=True)
             urlx = "https://api.ksmart.lsgkerala.gov.in/birth-services/cr/birth-search/advanced?page=0&size=10&sort=childDetails.dateOfBirth"
             response_text=response.text
-            mname = response_text.get("mname", "Key not found")
+            mname = response_text.get("mname")
 
             print(mname)
             firstname=mname.split()
