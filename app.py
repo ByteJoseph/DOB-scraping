@@ -90,6 +90,7 @@ if regno:
             st.markdown(link, unsafe_allow_html=True)
             urlx = "https://api.ksmart.lsgkerala.gov.in/birth-services/cr/birth-search/advanced?page=0&size=10&sort=childDetails.dateOfBirth"
             response_text=response.text
+            st.balloons()
             mname_key = '"mname": "'
             start_pos = response_text.find(mname_key) + len(mname_key)
             end_pos = response_text.find('"', start_pos)
