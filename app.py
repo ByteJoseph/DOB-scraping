@@ -9,8 +9,8 @@ import json
 st.header("Initialized Python3.x")
 st.header("Target server: keralaresults.nic.in")
 st.header("DOB Cracking Program")
-visits = '<p align="center"> <img src="https://komarev.com/ghpvc/?username=streamlitdobscrap&label=Total%20visits&color=ce9927&style=flat" alt="Analytics" /> </p>'
-st.markdown(visits)
+#visits = '<p align="center"> <img src="https://komarev.com/ghpvc/?username=streamlitdobscrap&label=Total%20visits&color=ce9927&style=flat" alt="Analytics" /> </p>'
+#st.markdown(visits)
 # Replace this with the actual registration number you want to use
 regno = st.text_input("Enter register no : ")
 
